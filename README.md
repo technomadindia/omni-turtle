@@ -1,2 +1,2 @@
-# robo-k9
+# omni-turtle
 Experimental Robot Platform
