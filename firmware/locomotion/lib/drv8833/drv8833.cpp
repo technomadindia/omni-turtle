@@ -6,11 +6,10 @@ void Drv8833::init_motor(int motor_id, int pin1, int pin2) {
     if (1 == motor_id) {
         motor1_pin1_ = pin1;
         motor1_pin2_ = pin2;
-    } else
-        (2 == motor_id) {
-            motor2_pin1_ = pin1;
-            motor2_pin2_ = pin2;
-        }
+    } else if (2 == motor_id) {
+        motor2_pin1_ = pin1;
+        motor2_pin2_ = pin2;
+    }
 }
 
 void Drv8833::init_control(int sleep_pin, int fault_pin) {
@@ -24,22 +23,19 @@ void Drv8833::set_motor(int motor_id, int direction, int power) {
     if (1 == motor_id) {
         pin1 = motor1_pin1_;
         pin2 = motor1_pin2_;
-    } else
-        (2 == motor_id) {
-            pin1 = motor2_pin1_;
-            pin2 = motor2_pin2_;
-        }
-    else {
+    } else if (2 == motor_id) {
+        pin1 = motor2_pin1_;
+        pin2 = motor2_pin2_;
+    } else {
         return;
     }
 
     // motor power clipped to 8-bit PWM range
     if (power > 255) {
         power = 255;
-    } else
-        (power < 0) {
-            power = 0;
-        }
+    } else if (power < 0) {
+        power = 0;
+    }
 
     // set motor polarity and pwm dutycycle
     if (direction == 1) { // CW rotation
