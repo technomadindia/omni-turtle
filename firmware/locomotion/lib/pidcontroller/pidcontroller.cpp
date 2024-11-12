@@ -3,9 +3,10 @@
 #include "pidcontroller.hpp"
 
 PIDController::PIDController() {
-    kp_ = 1.0;
-    ki_ = 0.01;
-    kd_ = 0.1;
+    kp_ = 0.0;
+    ki_ = 0.0;
+    kd_ = 0.0;
+    dead_zone_ = 0;
     prev_error_ = 0;
     error_integral_ = 0;
 }
@@ -13,10 +14,11 @@ PIDController::PIDController() {
 PIDController::~PIDController() {
 }
 
-void PIDController::tune(float kp, float ki, float kd) {
+void PIDController::tune(float kp, float ki, float kd, float dead_zone) {
     kp_ = kp;
     ki_ = ki;
     kd_ = kd;
+    dead_zone_ = dead_zone;
 }
 
 // PID control feedback loop
