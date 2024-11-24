@@ -56,15 +56,15 @@ void Drv8833::set_motor(int motor_id, int direction, int power) {
     }
 
     // set motor polarity and pwm dutycycle
-    if (direction == 1) { // CW rotation
+    if (0 == power) { // braking
+        digitalWrite(pin1, HIGH);
+        digitalWrite(pin2, HIGH);
+    } else if (1 == direction) { // CW rotation
         analogWrite(pin1, power);
         digitalWrite(pin2, LOW);
-    } else if (direction == -1) { // CCW rotation
+    } else if (-1 == direction) { // CCW rotation
         digitalWrite(pin1, LOW);
         analogWrite(pin2, power);
-    } else { // braking
-        digitalWrite(pin1, LOW);
-        digitalWrite(pin2, LOW);
     }
 }
 
