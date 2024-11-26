@@ -69,9 +69,9 @@ void Drv8833::set_motor(int motor_id, int direction, int power) {
 }
 
 void Drv8833::sleep() {
-    digitalWrite(sleep_pin_, HIGH);
+    digitalWrite(sleep_pin_, LOW);
 }
 
 void Drv8833::wake() {
-    digitalWrite(sleep_pin_, LOW);
+    digitalWrite(sleep_pin_, HIGH);
 }
